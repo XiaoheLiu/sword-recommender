@@ -1,0 +1,23 @@
+{% extends "reviews/base.html" %}
+{% block content %}
+
+
+<div class="ui vertical segment">
+    <h2 class=" ui header"> Review "{{ sword.name }}" from
+        {{ sword.manufacturer}} </h2>
+    <p>Type: {{ sword.sword_type }}</p>
+    <p>Price: ${{ sword.price }}</p>
+    <p>Website: <a href="{{ sword.link }}">{{ sword.link }}</a></p>
+</div>
+
+
+<form action="" method="post" class="ui reply form">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input class="ui blue submit icon button" type="submit" value="Add Review" />
+
+</form>
+
+
+{% endblock content %}

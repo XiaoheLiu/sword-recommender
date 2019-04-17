@@ -1,0 +1,43 @@
+{% extends "reviews/base.html" %}
+{% block content %}
+<div class="ui segment">
+    <h2 class=" ui header"> "{{ sword.name }}" from
+        {{ sword.manufacturer}} </h2>
+    <p>Type: {{ sword.sword_type }}</p>
+    <p>Price: ${{ sword.price }}</p>
+    <p>Website: <a href="{{ sword.link }}">{{ sword.link }}</a></p>
+
+    <h5>{{ sword.review_set.count }} reviews (Average rating: {{ sword.average_rating | floatformat }}/5 )</h5>
+</div>
+
+
+{% if sword.review_set.all %}
+<div class="ui comments">
+    <h3 class="ui dividing header">Recent reviews</h3>
+    {% for review in sword.review_set.all %}
+    <div class="comment">
+        <div class="content">
+            <span class="author"> Rated {{ review.rating }} of 5 by {{ review.author.username }}</span>
+            <div class="metadata">
+                <span class="date">{{ review.date_created }}</span></div>
+            <div class="text">
+                {{ review.comment }}
+            </div>
+            <div class="actions">
+                <a href="{% url 'review_detail' review.id %}" class="reply">Read More</a></div>
+
+            {% endfor %}
+
+            {% else %}
+            <h3>No reviews for this sword yet</h3>
+            {% endif %}
+
+
+            <div class="ui reply form">
+                <a href="{% url 'new_review' sword.id%}" class="ui blue submit icon button">Add Review</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

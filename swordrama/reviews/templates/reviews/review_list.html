@@ -1,0 +1,44 @@
+{% extends "reviews/base.html" %}
+{% block content %}
+
+<h1 class="ui dividing header">Latest Reviews</h1>
+
+{% if review_list %}
+{% for review in review_list %}
+<div class="ui vertical segment">
+    <h4 class="ui header">
+        Review of <a href="{% url 'sword_detail' review.sword.id %}">"{{ review.sword.name }}" from
+            {{ review.sword.manufacturer }} </a>
+    </h4>
+    <p> "{{ review.comment }}"</p>
+    <p>Rated {{ review.rating }} of 5 by {{ review.author.username }} </p>
+    <small><a href="{% url 'review_detail' review.id %}"> Read more </a></small>
+</div>
+
+
+{% endfor %}
+{% endif %}
+
+
+{% if is_paginated %}
+
+{% if page_obj.has_previous %}
+<a class="btn btn-outline-info btn-sm mb-4" href="?page=1">First</a>
+<a class="btn btn-outline-info btn-sm mb-4" href="?page={{page_obj.previous_page_number}}">Previous</a>
+{% endif %}
+
+{% for num in page_obj.paginator.page_range %}
+{% if page_obj.number == num %}
+<p class="btn btn-info btn-sm mb-4"> {{ num }}</p>
+{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+<a class="btn btn-outline-info btn-sm mb-4" href="?page={{num}}"> {{ num }}</a>
+{% endif %}
+{% endfor %}
+
+{% if page_obj.has_next %}
+<a class="btn btn-outline-info  btn-sm mb-4" href="?page={{page_obj.next_page_number}}">Next️</a>
+<a class="btn btn-outline-info btn-sm mb-4" href="?page={{page_obj.paginator.num_pages}}">Last</a>
+{% endif %}
+
+{% endif %}
+{% endblock content %}

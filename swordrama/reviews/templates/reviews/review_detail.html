@@ -1,0 +1,14 @@
+{% extends "reviews/base.html" %}
+{% block content %}
+
+
+<div class="ui raised segment">
+    <h4 class="ui header">
+        Review of <a href="{% url 'sword_detail' review.sword.id %}">"{{ review.sword.name }}" from
+            {{ review.sword.manufacturer }} </a>
+    </h4>
+    <p> "{{ review.comment }}"</p>
+    <p>Rated {{ review.rating }} of 5 by {{ review.author.username }} </p>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Semantic UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+    <script>
+        $(document)
+            .ready(function () {
+
+                // fix main menu to page on passing
+                $('.main.menu').visibility({
+                    type: 'fixed'
+                });
+
+                // show dropdown on hover
+                $('.main.menu  .ui.dropdown').dropdown({
+                    on: 'hover'
+                });
+            });
+    </script>
+
+    <!--  Custom CSS and Icon -->
+    <link rel="stylesheet" type="text/css" href="{% static 'reviews/main.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'reviews/favicon.png' %}" />
+    {% if title %}
+    <title>SwordRama | {{ title }}</title>
+    {% else %}
+    <title>SwordRama</title>
+    {% endif %}
+</head>
+
+<body>
+    <div class="ui main text container">
+        <h1 class="ui header">SwordRama</h1>
+        <p>Find the HEMA weapon that you have been dreaming of.</p>
+    </div>
+
+
+    <div class="ui borderless main menu">
+        <div class="ui text container">
+            <a class="header item" href="{% url 'review_list' %}">
+                <img class="logo" src="{% static 'reviews/favicon.png' %}">
+                SwordRama
+            </a>
+            <a href="{% url 'sword_list' %}" class="item">Swords</a>
+            <a href="{% url 'review_list' %}" class="item">Reviews</a>
+            <a href="#" class="ui right floated dropdown item">
+                <i class="large user circle icon"></i> <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item">Login</div>
+                    <div class="item">Register</div>
+                    <div class="divider"></div>
+                    <div class="header">Hi, username</div>
+                    <div class="item">Recommendation</div>
+                    <div class="item">Profile</div>
+                    <div class="item"> Logout</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="ui text container">
+        <main>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+
+    <div class="ui inverted vertical footer segment">
+        <div class="ui center aligned container">
+
+            {% comment %} <div class="ui inverted section divider"></div> {% endcomment %}
+            <img src="{% static 'reviews/favicon.png' %}" class="ui centered mini image">
+            <div class="ui horizontal inverted small divided link list">
+                {% comment %} <a class="item" href="#">Privacy Policy</a> {% endcomment %}
+                <li class="item">Built by Athena Liu</li>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

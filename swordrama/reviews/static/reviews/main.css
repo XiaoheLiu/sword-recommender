@@ -32,3 +32,8 @@ body {
     margin: 5em 0em 0em;
     padding: 5em 0em;
 }
+
+.muted-text {
+    color: #BBB;
+    margin-left: 5px;
+}

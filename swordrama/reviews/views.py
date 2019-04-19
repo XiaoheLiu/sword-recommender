@@ -10,6 +10,11 @@ class ReviewListView(ListView):
     context_object_name = 'review_list'
     ordering = ['-date_created']
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Latest Reviews for Various HEMA Weapons'
+        return context
+
 
 class ReviewDetailView(DetailView):
     model = Review
@@ -24,6 +29,7 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
         self.sword = get_object_or_404(Sword, pk=self.kwargs['sword_id'])
         context = super().get_context_data(**kwargs)
         context['sword'] = self.sword
+        context['title'] = 'Add Your Review'
         return context
 
     def form_valid(self, form):
@@ -38,7 +44,22 @@ class SwordListView(ListView):
     context_object_name = 'sword_list'
     ordering = ['sword_type']
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'View All Swords'
+        return context
+
 
 class SwordDetailView(DetailView):
     model = Sword
     context_object_name = 'sword'
+
+
+class UserReviewListView(ListView):
+    model = Review
+    template_name = 'reviews/user_reviews.html'
+    context_object_name = 'review_list'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Review.objects.filter(author=user).order_by('-date_created')

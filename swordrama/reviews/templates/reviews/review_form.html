@@ -1,4 +1,5 @@
 {% extends "reviews/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 
@@ -11,9 +12,9 @@
 </div>
 
 
-<form action="" method="post" class="ui reply form">
+<form action="" method="post" class="ui reply form" style="margin-top: 20px;">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
 
     <input class="ui blue submit icon button" type="submit" value="Add Review" />
 

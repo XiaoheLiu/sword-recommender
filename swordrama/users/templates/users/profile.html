@@ -1,0 +1,46 @@
+{% extends 'reviews/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1 class="ui dividing header">{{ user.username|title }}'s Profile</h1>
+
+<div class="ui vertical segment">
+    <form action="" method="post" class="ui form">
+        {% csrf_token %}
+        <fieldset class="field">
+            <legend class="ui header"> Update Your Profile
+            </legend>
+            {{ user_form|crispy}}
+            <button class='ui grey button' type="submit">
+                Update
+            </button>
+        </fieldset>
+    </form>
+</div>
+
+{% if user.review_set.all %}
+<div class="ui comments">
+    <h3 class="ui dividing header">My Reviews</h3>
+    {% for review in user.review_set.all %}
+    <div class="ui vertical segment">
+        <h4 class="ui header">
+            Reviewed <a href="{% url 'sword_detail' review.sword.id %}">"{{ review.sword.name }}" from
+                {{ review.sword.manufacturer }} </a>
+        </h4>
+        <p> "{{ review.comment }}"</p>
+        <p>Rated {{ review.rating }} of 5 <small class="muted-text">
+                {{ review.date_created }}</small> </p>
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+    <h3>No reviews for this sword yet</h3>
+    {% endif %}
+
+
+</div>
+</div>
+</div>
+
+{% endblock content %}

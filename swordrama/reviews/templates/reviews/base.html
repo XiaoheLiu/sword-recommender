@@ -51,18 +51,23 @@
             </a>
             <a href="{% url 'sword_list' %}" class="item">Swords</a>
             <a href="{% url 'review_list' %}" class="item">Reviews</a>
-            <a href="#" class="ui right floated dropdown item">
-                <i class="large user circle icon"></i> <i class="dropdown icon"></i>
+            <div class="ui right floated dropdown item">
+                <i class="large user circle icon"></i>{% if user.is_authenticated %}{{ user.username }}{% else %}Login
+                {% endif %}<i class="dropdown icon"></i>
                 <div class="menu">
-                    <div class="item">Login</div>
-                    <div class="item">Register</div>
-                    <div class="divider"></div>
-                    <div class="header">Hi, username</div>
+                    {% if user.is_authenticated %}
+
                     <div class="item">Recommendation</div>
-                    <div class="item">Profile</div>
-                    <div class="item"> Logout</div>
+                    <a href="{% url 'profile' %}" class=" item">Profile</a>
+                    <div class="divider"></div>
+                    <a href="{% url 'logout' %}" class="item"> Logout</a>
+                    {% else %}
+
+                    <a href="{% url 'register' %}" class="item"> Register</a>
+                    <a href="{% url 'login' %}" class="item">Login</a>
+                    {% endif %}
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 
@@ -71,7 +76,7 @@
         <main>
             {% if messages %}
             {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
+            <div class="ui {{ message.tags }} message">
                 {{ message }}
             </div>
             {% endfor %}

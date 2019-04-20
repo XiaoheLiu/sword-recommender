@@ -1,19 +1,69 @@
 {% extends "reviews/base.html" %}
 {% block content %}
 <div class="ui segment">
-    <h2 class=" ui header"> "{{ sword.name }}" from
-        {{ sword.manufacturer}} </h2>
-    <p>Type: {{ sword.sword_type }}</p>
-    <p>Price: ${{ sword.price }}</p>
-    <p>Website: <a href="{{ sword.link }}">{{ sword.link }}</a></p>
+    <h2 class=" ui centered header"> Details of "{{ sword.name }}" </h2>
+    <h4 class="ui horizontal divider header">
+        <i class="tag icon"></i>
+        Description
+    </h4>
+    <table class="ui definition table">
+        <tbody>
+            <tr>
+                <td style="width:30%;">Sword Type</td>
+                <td> {{ sword.sword_type }}</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Price (USD)</td>
+                <td> ${{ sword.price }}</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Manufacturer</td>
+                <td> {{ sword.manufacturer }}</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Website</td>
+                <td> <a href="{{ sword.link }}" target="_blank">Open link in new tab <i
+                            class="external alternate icon"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4 class="ui horizontal divider header">
+        <i class="bar chart icon"></i>
+        Specifications
+    </h4>
+
+    <table class="ui definition small table">
+        <tbody>
+            <tr>
+                <td style="width:30%;">Tip Type</td>
+                <td> {{ sword.tip_type}}</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Weight</td>
+                <td> {{ sword.weight}}</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Overall Length</td>
+                <td> {{ sword.overall_length}}</td>
+            </tr>
+        </tbody>
+    </table>
 
     <h5>{{ sword.review_set.count }} reviews (Average rating: {{ sword.average_rating | floatformat }}/5 )</h5>
-</div>
-
-
-<div class="ui reply form">
     <a href="{% url 'new_review' sword.id%}" class="ui blue submit icon button">Add Review</a>
 </div>
+
 {% if sword.review_set.all %}
 <div class="ui comments">
     <h3 class="ui dividing header">Recent reviews</h3>

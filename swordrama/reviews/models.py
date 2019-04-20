@@ -9,14 +9,10 @@ class Sword(models.Model):
     link = models.URLField(max_length=200)
     manufacturer = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=8, decimal_places=2)
-
-    SWORD_TYPE_CHOICES = (
-        ('Rapier', 'Rapier'),
-        ('Feder', 'Feder'),
-        ('Longsword Simulator', 'Longsword Simulator'),
-        ('Other Weapon', 'Others'),
-    )
-    sword_type = models.CharField(max_length=20, choices=SWORD_TYPE_CHOICES)
+    sword_type = models.CharField(max_length=50)
+    weight = models.CharField(max_length=20, blank=True)
+    overall_length = models.CharField(max_length=30, blank=True)
+    tip_type = models.CharField(max_length=20, blank=True)
 
     def average_rating(self):
         return self.review_set.aggregate(models.Avg('rating'))['rating__avg']

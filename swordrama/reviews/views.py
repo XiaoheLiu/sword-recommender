@@ -9,6 +9,7 @@ class ReviewListView(ListView):
     model = Review
     context_object_name = 'review_list'
     ordering = ['-date_created']
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -43,6 +44,7 @@ class SwordListView(ListView):
     model = Sword
     context_object_name = 'sword_list'
     ordering = ['sword_type']
+    paginate_by = 20
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -35,7 +35,13 @@
     {% endfor %}
 
     {% else %}
-    <h3>No reviews for this sword yet</h3>
+    <h3>You have not reviewed any sword yet.</h3>
+    <ul>
+        <li> Discover new swords from <a href="#"> a personalized recommendation list</a> generized by our smart machine
+            learning
+            algorithm.</li>
+        <li>Check out <a href="{% url 'sword_list' %}">our HEMA sword list and add your review</a>.</li>
+    </ul>
     {% endif %}
 
 

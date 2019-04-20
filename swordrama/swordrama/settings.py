@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms',
     'crispy_forms_semantic_ui',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

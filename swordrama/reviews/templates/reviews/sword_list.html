@@ -1,12 +1,12 @@
 {% extends "reviews/base.html" %}
 {% block content %}
+<h1 class="ui dividing header">View All Swords</h1>
+
+{% include "reviews/pagination.html" %}
+
 {% if sword_list %}
-
-
 <div>
-    <h1 class="ui dividing header">View All Swords</h1>
-
-    <table class="ui selectable celled table">
+    <table class="ui selectable celled small table">
         <thead>
             <tr>
                 <th>Type</th>
@@ -24,15 +24,13 @@
                 <td><a href="{% url 'sword_detail' sword.id %}">{{sword.name}}</a></td>
                 <td><a href="{% url 'sword_detail' sword.id %}">${{sword.price}}</a></td>
                 <td> <a href="{{ sword.link }}"><i class="external alternate icon"></i>Link</a></td>
-
-
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
 </div>
-
 {% endif %}
+
+{% include "reviews/pagination.html" %}
 
 {% endblock content %}

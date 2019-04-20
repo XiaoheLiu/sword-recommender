@@ -10,5 +10,12 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ['comment']
 
 
-admin.site.register(Sword)
+class SwordAdmin(admin.ModelAdmin):
+    model = Sword
+    list_display = ('name', 'sword_type', 'manufacturer', 'weight')
+    list_filter = ['sword_type', 'manufacturer']
+    search_fields = ['name']
+
+
+admin.site.register(Sword, SwordAdmin)
 admin.site.register(Review, ReviewAdmin)

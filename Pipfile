@@ -12,6 +12,8 @@ numpy = "*"
 django2-semantic-ui = "*"
 django-crispy-forms = "*"
 crispy-forms-semantic-ui = "*"
+django-extensions = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.7"

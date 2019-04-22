@@ -126,5 +126,5 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'semantic-ui'
 
-LOGIN_REDIRECT_URL = 'sword_list'
+LOGIN_REDIRECT_URL = 'recommendation'
 LOGIN_URL = 'login'

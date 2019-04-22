@@ -42,7 +42,7 @@
     <table class="ui definition small table">
         <tbody>
             <tr>
-                <td style="width:30%;">Tip Type</td>
+                <td style="width:30%;">Tip Type <sup>*</sup> </td>
                 <td> {{ sword.tip_type}}</td>
             </tr>
         </tbody>
@@ -59,6 +59,18 @@
             </tr>
         </tbody>
     </table>
+
+    <small>
+        <sup>*</sup>Tip Types:
+        <ul>
+            <li> Rounded = Blunt, usually on the thinner side but not sharp necessarily </li>
+            <li> Thickened = A
+                thick tip, the
+                tip material has been left on the blade stock, the tip is not rolled</li>
+            <li>Rolled = Tip has been rolled over itself
+                to create a "loop"</li>
+        </ul>
+    </small>
 
     <h5>{{ sword.review_set.count }} reviews (Average rating: {{ sword.average_rating | floatformat }}/5 )</h5>
     <a href="{% url 'new_review' sword.id%}" class="ui blue submit icon button">Add Review</a>

@@ -1,7 +1,13 @@
 {% extends "reviews/base.html" %}
 {% block content %}
 {% block header %}
-<h1 class="ui dividing header">View All Swords</h1>
+<h1 class="ui dividing header">
+    <p class="content">
+        View All Swords
+        <div class="sub header">Click on the sword name to see specifications and reviews of the sword.
+        </div>
+    </p>
+</h1>
 {% endblock header %}
 
 {% include "reviews/pagination.html" %}

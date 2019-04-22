@@ -1,0 +1,49 @@
+{% extends "reviews/base.html" %}
+{% block content %}
+
+<div class="ui vertical stripe segment">
+    <div class="ui text container">
+        <h2 class="ui header">A Curated List of HEMA Swords</h2>
+        <p>As a HEMA weapon practitioner, it is not always a easy job to find a suited weapon. Manufacturers, sword
+            specifiactions, price, shipping... There is a lot to research before you can make that order. </p>
+        <p>We hope to make the process easier by building this sword-review website. We have collected a list of
+            {{sword_count}} swords with their detailed information, and you can also see other user's review and ratings
+            for these swords. </p>
+        <p>This is a growing list. If you find a sword that is not on our catalog, please <a
+                href="mailto:sdathenaliu@gmail.com">contact us and suggest new swords</a>.</p>
+        <a class="ui large button" href="{% url 'sword_list' %}">See All {{ sword_count }} Swords</a>
+
+        <div class="ui divider"></div>
+
+        <h2 class="ui  header ">Checkout Top Reviews for Any HEMA Sword</h2>
+        <div class="ui equal width stackable internally celled grid">
+            <div class="center aligned row">
+
+                {% for review in review_list %}
+                <div class="column">
+                    <h3>"{{ review.comment }}"</h3>
+                    <p>(Review of "{{review.sword.name}}" by {{review.sword.manufacturer}})</p>
+                    <p>Rated {{review.rating}}/5 by {{review.author}}</p>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <a class="ui large button" href="{% url 'review_list' %}">Read All {{ review_count }} Reviews</a>
+
+
+        <h4 class="ui horizontal header divider">
+            <a href="{% url 'register' %}">Join Us Now</a>
+        </h4>
+        <h2 class="ui header">Get Personalized Sword Recommendations</h2>
+        <p>Register now and start writing reviews on swords that you have used. You will get a recommendation list
+            based on our smart machine learning algorithm!</p>
+        <a class="ui large button" href="{% url 'recommendation' %}">Get Recommendations</a>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}

@@ -1,8 +1,20 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from .models import Review, Sword
+
+
+def home_view(request):
+    review_list = [Review.objects.first(), Review.objects.last()]
+    sword_count = Sword.objects.count()
+    review_count = Review.objects.count()
+    context = {
+        'review_list': review_list,
+        'sword_count': sword_count,
+        'review_count': review_count,
+    }
+    return render(request, 'reviews/home.html', context)
 
 
 class ReviewListView(ListView):

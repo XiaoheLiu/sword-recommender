@@ -80,3 +80,18 @@ def recommendation(request):
 
     context = {'user': request.user, 'sword_list': sword_list}
     return render(request, 'users/recommendation.html', context)
+
+
+@login_required
+def more_recommendation(request):
+    # Naive recommendation approach: recommend 10 random sword that the user has not reviewed
+    user_reviews = Review.objects.filter(
+        author=request.user).prefetch_related('sword')
+    user_reviews_sword_ids = set(map(lambda x: x.sword.id, user_reviews))
+    id_list = Sword.objects.exclude(
+        id__in=user_reviews_sword_ids).values_list('id', flat=True)
+    random_id_list = sample(list(id_list), 10)
+    sword_list = Sword.objects.filter(id__in=random_id_list)
+
+    context = {'user': request.user, 'sword_list': sword_list}
+    return render(request, 'users/recommendation.html', context)

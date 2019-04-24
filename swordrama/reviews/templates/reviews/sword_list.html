@@ -1,4 +1,5 @@
 {% extends "reviews/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 {% block header %}
 <h1 class="ui dividing header">
@@ -10,11 +11,20 @@
 </h1>
 {% endblock header %}
 
-{% include "reviews/pagination.html" %}
+{% if filter %}
+<form method="GET" class="ui form">
+    <div class="three fields">
+        {{ filter.form|crispy}}
+    </div>
+    <button type="submit" class="ui blue button">Search</button>
+</form>
+{% endif %}
 
+<div class="ui divider"></div>
 {% if sword_list %}
+{% include "reviews/pagination.html" %}
 <div>
-    <table class="ui selectable celled small table">
+    <table class="ui selectable celled small compact table">
         <thead>
             <tr>
                 <th>Type</th>
@@ -37,8 +47,11 @@
         </tbody>
     </table>
 </div>
-{% endif %}
-
 {% include "reviews/pagination.html" %}
+{% else %}
+<p class="ui warning message">
+    Oops, no sword was found. Please change your query and search again!
+</p>
+{% endif %}
 
 {% endblock content %}

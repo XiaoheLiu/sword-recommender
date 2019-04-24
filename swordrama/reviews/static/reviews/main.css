@@ -37,3 +37,7 @@ body {
     color: #BBB;
     margin-left: 5px;
 }
+
+.ui.form select {
+    height: 40px;
+}

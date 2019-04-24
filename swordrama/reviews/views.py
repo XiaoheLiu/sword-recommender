@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from .models import Review, Sword
 from .recommendations import update_clusters
+from .filters import SwordFilter
 
 
 def home_view(request):
@@ -54,16 +55,26 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class SwordListView(ListView):
-    model = Sword
-    context_object_name = 'sword_list'
-    ordering = ['sword_type']
-    paginate_by = 20
+class FilteredListView(ListView):
+    filterset_class = None
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = self.filterset_class(
+            self.request.GET, queryset=queryset)
+        return self.filterset.qs.distinct()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'View All Swords'
+        context['filter'] = self.filterset
         return context
+
+
+class SwordListView(FilteredListView):
+    filterset_class = SwordFilter
+    model = Sword
+    context_object_name = 'sword_list'
+    paginate_by = 20
 
 
 class SwordDetailView(DetailView):

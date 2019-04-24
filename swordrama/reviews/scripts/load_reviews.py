@@ -8,7 +8,7 @@ def save_review_from_row(sword_row):
         review = Review()
         review.comment = sword_row.note
         review.author_id = randint(1, 4)
-        review.sword_id = 409 + sword_row.name
+        review.sword_id = sword_row.name
         review.rating = randint(1, 5)
         review.save()
 

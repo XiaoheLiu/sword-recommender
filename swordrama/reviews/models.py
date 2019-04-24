@@ -40,3 +40,11 @@ class Review(models.Model):
 
     def get_absolute_url(self):
         return reverse('sword_detail', kwargs={'pk': self.sword.pk})
+
+
+class Cluster(models.Model):
+    name = models.CharField(max_length=100)
+    users = models.ManyToManyField(User)
+
+    def get_members(self):
+        return "\n".join([u.username for u in self.users.all()])

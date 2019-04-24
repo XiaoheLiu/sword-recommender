@@ -10,6 +10,7 @@ def parse_price(price):
 
 def save_sword_from_row(sword_row):
     sword = Sword()
+    sword.id = sword_row.name
     sword.name = sword_row.model
     sword.link = sword_row.link
     sword.manufacturer = sword_row.manufacturer

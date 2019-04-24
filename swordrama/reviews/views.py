@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from .models import Review, Sword
+from .recommendations import update_clusters
 
 
 def home_view(request):
@@ -49,6 +50,7 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
         self.sword = get_object_or_404(Sword, pk=self.kwargs['sword_id'])
         form.instance.author = self.request.user
         form.instance.sword = self.sword
+        update_clusters()
         return super().form_valid(form)
 
 

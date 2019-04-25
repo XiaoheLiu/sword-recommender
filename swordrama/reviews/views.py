@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from .models import Review, Sword
@@ -53,6 +54,39 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
         form.instance.sword = self.sword
         update_clusters()
         return super().form_valid(form)
+
+
+class ReviewUpdateView(LoginRequiredMixin, UpdateView):
+    model = Review
+    fields = ['comment', 'rating']
+    template_name = 'reviews/update_review.html'
+
+    def get_context_data(self, **kwargs):
+        review = self.get_object()
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Edit Review'
+        return context
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        review = self.get_object()
+        return self.request.user == review.author
+
+
+class ReviewDeleteView(LoginRequiredMixin, DeleteView):
+    model = Review
+    success_url = reverse_lazy("sword_list")
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        review = self.get_object()
+        return self.request.user == review.author
 
 
 class FilteredListView(ListView):

@@ -30,6 +30,8 @@
         <p> "{{ review.comment }}"</p>
         <p>Rated {{ review.rating }} of 5 <small class="muted-text">
                 {{ review.date_created }}</small> </p>
+        {% include "reviews/update_delete_buttons.html" %}
+
     </div>
 
     {% endfor %}

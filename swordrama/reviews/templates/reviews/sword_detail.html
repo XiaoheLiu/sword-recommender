@@ -91,7 +91,9 @@
                 {{ review.comment }}
             </div>
             <div class="actions">
-                <a href="{% url 'review_detail' review.id %}" class="reply">Read More</a></div>
+                <a href="{% url 'review_detail' review.id %}" class="reply">Read More</a>
+            </div>
+            {% include "reviews/update_delete_buttons.html" %}
 
             {% endfor %}
 

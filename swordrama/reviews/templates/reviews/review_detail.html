@@ -11,6 +11,8 @@
     <p>Rated {{ review.rating }} of 5 by <a href="{% url 'user_reviews' review.author.username %}">{{ review.author}}
         </a><small class="muted-text">
             {{ review.date_created }}</small> </p>
+    {% include "reviews/update_delete_buttons.html" %}
+
 </div>
 
 {% endblock content %}

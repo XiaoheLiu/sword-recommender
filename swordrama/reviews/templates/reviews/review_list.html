@@ -19,6 +19,8 @@
             {{ review.date_created }}</small> </p>
 
     <small><a href="{% url 'review_detail' review.id %}"> Read more </a></small>
+    {% include "reviews/update_delete_buttons.html" %}
+
 </div>
 {% endfor %}
 {% endif %}

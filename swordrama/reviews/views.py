@@ -52,7 +52,7 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
         self.sword = get_object_or_404(Sword, pk=self.kwargs['sword_id'])
         form.instance.author = self.request.user
         form.instance.sword = self.sword
-        update_clusters()
+        update_clusters(is_new_user=False)
         return super().form_valid(form)
 
 

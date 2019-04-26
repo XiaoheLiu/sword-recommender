@@ -5,11 +5,11 @@ from scipy.sparse import dok_matrix, csr_matrix
 import numpy as np
 
 
-def update_clusters():
+def update_clusters(is_new_user):
     num_reviews = Review.objects.count()
     update_step = 10
-    # Recluster users when every <update_step> reviews are added
-    if num_reviews % update_step == 10:
+    # Recluster users when every <update_step> reviews are added or when a new user is created
+    if num_reviews % update_step == 0 or is_new_user:
         # Retrieve user reviews data
         all_users = User.objects.only("username")
         all_reviewed_sword_ids = set(

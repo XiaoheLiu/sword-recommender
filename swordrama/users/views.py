@@ -49,7 +49,7 @@ def recommendation(request):
             username=request.user.username).cluster_set.first().name
     except:
         # If this user does not belong to any cluster, update the clusters.
-        update_clusters()
+        update_clusters(is_new_user=True)
         user_cluster_name = User.objects.get(
             username=request.user.username).cluster_set.first().name
 

@@ -5,6 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="A sword-review platform for HEMA practitioners to find suited weapon for training. Registered users will get a personalized sword recommendation list based on machine learning algorithm">
 
     <!-- Semantic UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" />
@@ -32,7 +34,7 @@
     {% if title %}
     <title>SwordRama | {{ title }}</title>
     {% else %}
-    <title>SwordRama</title>
+    <title>SwordRama - Find the HEMA weapon that you have been dreaming of</title>
     {% endif %}
 </head>
 
@@ -43,7 +45,7 @@
     </div>
 
 
-    <div class="ui borderless main menu">
+    <div class="ui borderless stackable main menu">
         <div class="ui text container">
             <a class="header item" href="{% url 'home' %}">
                 <img class="logo" src="{% static 'reviews/favicon.png' %}">
@@ -92,7 +94,7 @@
             <div class="ui horizontal inverted small divided link list">
                 <a class="item" href="https://athenaliu.space/">The Developer</a>
                 <a class="item" href="mailto:sdathenaliu@gmail.com">Contact Us</a>
-                <a class="item" href="mailto:sdathenaliu@gmail.com">Suggest Swords</a>
+                <a class="item" href="https://forms.gle/nH1vHUXJ3pKX5B588">Suggest Swords</a>
                 <a class="item" href="https://github.com/XiaoheLiu/sword-recommender">Source Code <i
                         class="github  icon"></i></a>
             </div>

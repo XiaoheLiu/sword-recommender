@@ -6,11 +6,16 @@
         <h2 class="ui header">A Curated List of HEMA Swords</h2>
         <p>As a HEMA practitioner, it is not always a easy job to find a suited weapon. Manufacturers, sword
             specifications, price, shipping... There is a lot to research before you can make that order. </p>
-        <p>We hope to make the process easier by building this sword-review website. We have collected a list of
-            {{sword_count}} swords with their detailed information, and you can also see other user's review and ratings
-            for these swords. </p>
-        <p>This is a growing list. If you find a sword that is not on our catalog, please <a
-                href="mailto:sdathenaliu@gmail.com">contact us and suggest new swords</a>.</p>
+        <p>We hope to make the process easier by building this sword-review platform. We have created a curated sword
+            list based on the <a
+                href="https://docs.google.com/spreadsheets/d/1kLx0TxPBRav6yG81fVNegE-rBqfEAWYZpYOM6ODy2CQ/edit?fbclid=IwAR0buAckmWs_XJPZHiQvpymbV9VNmXeCm-nr8XqgiqeCrwccJ8rGNSUzTuY"
+                target="_blank">HEMA
+                Weapon Spreadsheet</a> maintained by <a href=" https://www.aidanblake.com/" target="_blank">Aidan
+                Blake</a> et al. Feel free to view these swords along with other people's reviews and ratings, and more
+            importantly - add
+            your own comments! </p>
+        <p>This is a growing list. If you find a sword that is not on our catalog, please fill in this <a
+                href="https://forms.gle/nH1vHUXJ3pKX5B588">form to suggest new swords</a>.</p>
         <a class="ui large button" href="{% url 'sword_list' %}">See All {{ sword_count }} Swords</a>
 
         <div class="ui divider"></div>
@@ -36,8 +41,10 @@
             <a href="{% url 'register' %}">Join Us Now</a>
         </h4>
         <h2 class="ui header">Get Personalized Sword Recommendations</h2>
-        <p>Register now and start writing reviews on swords that you have used. You will get a recommendation list
-            based on our smart machine learning algorithm!</p>
+        <p>Register now and you will get a recommendation list
+            based on our smart machine learning algorithm! We use K-means clustering that makes use of user similarity
+            in order to provide the recommendations, so the more reviews on the website, the smarter the recommendation
+            will get! </p>
         <a class="ui large button" href="{% url 'recommendation' %}">Get Recommendations</a>
     </div>
 </div>
